@@ -111,8 +111,8 @@ function showCocktails(){
     let stratIndex = (page-1)*cocktailPerPage
     let endIndex = stratIndex+cocktailPerPage
     let cocktailsToShow = cocktails.slice(stratIndex,endIndex)
-    cocktailsToShow.forEach(obj=>{
-        document.querySelector('.cocktail-list').innerHTML += `<div class="myCard"><img src="https://source.unsplash.com/random/200×300/?cocktail"></img>${obj.name}</div>`
+    cocktailsToShow.forEach((obj, i)=>{
+        document.querySelector('.cocktail-list').innerHTML += `<div class="myCard"><img src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}</div>`
     })
     renderPagination(cocktails.length)
 }
@@ -133,7 +133,7 @@ function renderPagination(totalItem){
 
 function handlePaginationClick(e){
     if(e.target.tagName=='BUTTON'){
-        console.log('ok', e.target.textContent);
+        //console.log('ok', e.target.textContent);
         page =+ e.target.textContent
         showCocktails()
     }
