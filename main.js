@@ -1,8 +1,9 @@
 import { apiKey } from "./apiKey.js";
 import { getData } from "./getData.js";
+/*
 import { verifyUserPw } from "./verifyUserPw.js";
 import { userExist } from "./userExist.js";
-/*
+
 document.querySelectorAll("button").forEach((obj) => {
     obj.addEventListener("click", auth);
 });
@@ -82,7 +83,6 @@ function logoutUser() {
 }
 //első látogatáskor:
 verifyAuth();
-
 */
 
 const url = 'https://api.api-ninjas.com/v1/cocktail?ingredients=soda';
@@ -92,63 +92,34 @@ const options = {
     contentType: 'application/json'
 };
 
-/*
-const returnUrl=(key,breed=null)=>{
-    return breed==null ? `https://api.thecatapi.com/v1/images/search?limit=100&api_key=${key}&has_breeds=1` :
-                         `https://api.thecatapi.com/v1/images/search?limit=50&breed_ids=${breed}&api_key=${apiKey}`
-}
-*/
-
 document.querySelector('.pagination').addEventListener('click', handlePaginationClick)
-//document.querySelector('.myBtn').addEventListener('click', handleClick)
-/*
-let cats = []
-let page = 1//fog változni
-let totalPage = 1
-let catsPerPage = 8
-*/
-//getData(returnUrl(apiKey),renderCats)
-//getData(returnUrl(apiKey,'beng'),renderCats)
+
+let cocktails = []
+let page = 1
+let totalPage = 5
+let cocktailPerPage = 2
 
 let card = getData(url, options, renderData);
 function renderData(data){
     console.log(data);
-    for(let op = 0; op < data.length; op++){
-        document.querySelector('.cats-list').innerHTML += `<div class="myCard">${data[op].name} ${data[op].ingredients}</div>`
-    }
+    cocktails = data
+    showCocktails()
 }
 
-/*
-function handleClick(){
-    let breedName = document.querySelector('.myInput').value
-    //let url = breedName.length==0 ? returnUrl(apiKey) : returnUrl(apiKey,breedName)
-    //getData(url, renderCats)
-    //console.log(getData(url, options));
-}
-
-function renderCats(data){
-    //console.log(data);
-    cats = data
-    //console.log(cats);
-    //document.querySelector('.loading').classList.add('hidden')
-    document.querySelector('.myBtn').classList.remove('hidden')
-    showCats()
-}
-*/
-function showCats(){
-    document.querySelector('.cats-list').innerHTML = ''
-    let stratIndex = (page-1)*catsPerPage
-    let endIndex = stratIndex+catsPerPage
-    let catsToShow = cats.slice(stratIndex,endIndex)
-    catsToShow.forEach(obj=>{
-        document.querySelector('.cats-list').innerHTML += `<div class="myCard">${data[op].name} ${data[op].ingredients}</div>`
+function showCocktails(){
+    document.querySelector('.cocktail-list').innerHTML = ''
+    let stratIndex = (page-1)*cocktailPerPage
+    let endIndex = stratIndex+cocktailPerPage
+    let cocktailsToShow = cocktails.slice(stratIndex,endIndex)
+    cocktailsToShow.forEach(obj=>{
+        document.querySelector('.cocktail-list').innerHTML += `<div class="myCard"><img src="https://source.unsplash.com/random/200×300/?cocktail"></img>${obj.name}</div>`
     })
-    renderPagination(cats.length)
+    renderPagination(cocktails.length)
 }
 
 function renderPagination(totalItem){
     document.querySelector('.pagination').innerHTML = ''
-    totalPage =Math.ceil(totalItem/catsPerPage)
+    totalPage =Math.ceil(totalItem/cocktailPerPage)
     for(let i=1; i<=totalPage; i++){
         let button = document.createElement('button')
         button.textContent = i
@@ -163,7 +134,7 @@ function renderPagination(totalItem){
 function handlePaginationClick(e){
     if(e.target.tagName=='BUTTON'){
         console.log('ok', e.target.textContent);
-        page =+ e.target.textContent//szám kell legyen
-        showCats()
+        page =+ e.target.textContent
+        showCocktails()
     }
 }
