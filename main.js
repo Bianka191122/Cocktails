@@ -114,7 +114,11 @@ let card = getData(url, options, renderData);
 function renderData(data){
     console.log(data);
     for(let op = 0; op < data.length; op++){
-        document.querySelector('.cats-list').innerHTML += `<div class="myCard">${data[op].name} ${data[op].ingredients}</div>`
+        document.querySelector('.cats-list').innerHTML += `
+        <div class="myCard">
+        <div class="name">${data[op].name}</div>
+        <div class="ingredients">${data[op].ingredients}</div>
+        </div>`
     }
 }
 
