@@ -101,12 +101,12 @@ const returnUrl=(key,breed=null)=>{
 
 document.querySelector('.pagination').addEventListener('click', handlePaginationClick)
 //document.querySelector('.myBtn').addEventListener('click', handleClick)
-
+/*
 let cats = []
 let page = 1//fog változni
 let totalPage = 1
 let catsPerPage = 8
-
+*/
 //getData(returnUrl(apiKey),renderCats)
 //getData(returnUrl(apiKey,'beng'),renderCats)
 
@@ -141,7 +141,7 @@ function showCats(){
     let endIndex = stratIndex+catsPerPage
     let catsToShow = cats.slice(stratIndex,endIndex)
     catsToShow.forEach(obj=>{
-        document.querySelector('.cats-list').innerHTML += `<div class="myCard"><img class="myPhoto" src="${obj.url}"></div>`
+        document.querySelector('.cats-list').innerHTML += `<div class="myCard">${data[op].name} ${data[op].ingredients}</div>`
     })
     renderPagination(cats.length)
 }
