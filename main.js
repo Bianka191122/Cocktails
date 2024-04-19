@@ -2,7 +2,7 @@ import { apiKey } from "./apiKey.js";
 import { getData } from "./getData.js";
 import { verifyUserPw } from "./verifyUserPw.js";
 import { userExist } from "./userExist.js";
-
+/*
 document.querySelectorAll("button").forEach((obj) => {
     obj.addEventListener("click", auth);
 });
@@ -83,38 +83,58 @@ function logoutUser() {
 //első látogatáskor:
 verifyAuth();
 
+*/
 
+const url = 'https://api.api-ninjas.com/v1/cocktail?ingredients=soda';
+const options = {
+	method: 'GET',
+	headers: {'X-Api-Key': apiKey},
+    contentType: 'application/json'
+};
+
+/*
 const returnUrl=(key,breed=null)=>{
     return breed==null ? `https://api.thecatapi.com/v1/images/search?limit=100&api_key=${key}&has_breeds=1` :
                          `https://api.thecatapi.com/v1/images/search?limit=50&breed_ids=${breed}&api_key=${apiKey}`
 }
+*/
 
 document.querySelector('.pagination').addEventListener('click', handlePaginationClick)
-document.querySelector('.myBtn').addEventListener('click', handleClick)
+//document.querySelector('.myBtn').addEventListener('click', handleClick)
 
 let cats = []
 let page = 1//fog változni
 let totalPage = 1
 let catsPerPage = 8
 
-getData(returnUrl(apiKey),renderCats)
+//getData(returnUrl(apiKey),renderCats)
 //getData(returnUrl(apiKey,'beng'),renderCats)
 
+let card = getData(url, options, renderData);
+function renderData(data){
+    console.log(data);
+    for(let op = 0; op < data.length; op++){
+        document.querySelector('.cats-list').innerHTML += `<div class="myCard">${data[op].name} ${data[op].ingredients}</div>`
+    }
+}
+
+/*
 function handleClick(){
     let breedName = document.querySelector('.myInput').value
-    let url = breedName.length==0 ? returnUrl(apiKey) : returnUrl(apiKey,breedName)
-    getData(url, renderCats)
+    //let url = breedName.length==0 ? returnUrl(apiKey) : returnUrl(apiKey,breedName)
+    //getData(url, renderCats)
+    //console.log(getData(url, options));
 }
 
 function renderCats(data){
     //console.log(data);
     cats = data
     //console.log(cats);
-    document.querySelector('.loading').classList.add('hidden')
+    //document.querySelector('.loading').classList.add('hidden')
     document.querySelector('.myBtn').classList.remove('hidden')
     showCats()
 }
-
+*/
 function showCats(){
     document.querySelector('.cats-list').innerHTML = ''
     let stratIndex = (page-1)*catsPerPage
@@ -139,6 +159,7 @@ function renderPagination(totalItem){
         document.querySelector('.pagination').appendChild(button)
     }
 }
+
 function handlePaginationClick(e){
     if(e.target.tagName=='BUTTON'){
         console.log('ok', e.target.textContent);
