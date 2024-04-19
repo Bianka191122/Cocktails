@@ -104,21 +104,6 @@ function renderData(data){
     console.log(data);
     cocktails = data
     showCocktails()
-    for(let op = 0; op < data.length; op++){
-        document.querySelector('.cats-list').innerHTML += `
-        <div class="myCard">
-        <div class="name">${data[op].name}</div>
-        <div class="ingredients">${data[op].ingredients}</div>
-        </div>`
-    }
-}
-
-/*
-function handleClick(){
-    let breedName = document.querySelector('.myInput').value
-    //let url = breedName.length==0 ? returnUrl(apiKey) : returnUrl(apiKey,breedName)
-    //getData(url, renderCats)
-    //console.log(getData(url, options));
 }
 
 function showCocktails(){
