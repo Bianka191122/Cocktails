@@ -4,21 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Satisfy&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Cocktails</title>
     <style type="text/tailwindcss">
         @layer components{
             .myInput{
-                @apply w-[150px] block   rounded-lg border border-gray-200 bg-white px-5 py-4 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40;
+                @apply w-[150px] block   rounded-lg border border-gray-200 bg-white px-5 py-4 text-gray-700 focus:border-blue-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40;
             }
             .myBtn{
-                @apply  disabled:opacity-25 px-6 py-2 text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80;            
+                @apply  disabled:opacity-25 px-6 py-2 text-white capitalize transition-colors duration-300 transform bg-blue-200 rounded-lg hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-100 focus:ring-opacity-80;            
             }
             .myCard{
-                @apply w-[300px] h-[300px] border border-indigo-700 bg-[#ee6868];
+                @apply w-[300px] h-[400px] bg-[#eebf68];
+                border: 2px solid  rgb(250, 219, 96);
+                box-shadow: -1px 1px 7px 2px rgb(250, 219, 96);
+                color: rgb(180, 33, 70);
+                text-transform: uppercase;
+                text-align: center;
+                font-weight: bold;
+                padding: 10px;
+                font-size: 25px;
+                border-radius: 10%;
+                font-family: "Philosopher", sans-serif;
+
             }
             .page-btn{
-                @apply w-[50px] h-[50px] border border-indigo-400;
+                @apply w-[50px] h-[50px] border rounded-3xl border-[#eebf68] hover:bg-[#770F29] focus:ring focus:ring-[#eebf68];
+                background-color: rgb(161, 23, 57);
+                color: #eebf68;
+                font-weight: bold;
+                font-size: large;
+                font-family: "Philosopher", sans-serif;
+                box-shadow: -0.5px -0.5px 6px 1px rgb(250, 219, 96);
             }
             .myPhoto{
                 @apply object-cover w-[100%] aspect-square; 
@@ -31,32 +50,70 @@
             }
 
             body{
-                background-color: orange;
+                background-image: url(backgroundCockt.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
             }
 
-            #images{
+            .images{
                aspect-ratio: 1/1;
             }
 
             .pagination{
-                margin-top: 100%;
+
             }
 
             .container{
-               margin-top:120px; 
-               margin-left: auto;
-               margin-right: auto;
-               width: 800px;
-               background-color: red;
-               border-radius: 8px;
-               padding-bottom: 25px;
-               padding-top: 25px; 
+               width: 950px;
+               background-color: rgba(180, 33, 70, 0.817);
+               padding: 30px;
+               box-shadow: -0.5px 1px 7px 3px rgb(250, 219, 96);
+               border-radius: 50%;
+            }
+
+            h1{
+                font-family: "Satisfy", cursive;
+                color: rgb(250, 219, 96);
+            }
+
+            @media only screen and (max-width: 768px) {
+                .container{
+                    border-radius: 0 !important;
+                    padding-bottom: 10px;
+                }
+                .myCard{
+                    padding: 5px;
+                    height: 250px;
+                    width: 200px;
+                    font-size: large;
+                }
+                
+                h1{
+                    font-size: 40px !important;
+                    padding-bottom: 10px;
+                }
+
+                .page-btn{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            @media only screen and (max-width: 1024px) {
+                .container{
+                    border-radius: 45%;
+                }
             }
         }
     </style>
 </head>
 
-<body>
+<body class="h-[100vh] flex justify-center items-center">
+    <div class="container">
+        <h1 class="text-center text-7xl">Cocktails</h1>
+
     <!--<div class="loginRegister border flex justify-center gap-2 items-center p-2">
         <input class="myInput w-[250px] hidden"  type="text" id="username" placeholder="Username">
         <input class="myInput w-[250px] hidden"  type="password" id="pw" placeholder="Password">
@@ -80,11 +137,12 @@
             Loading...
         </button>
     </div>-->
-    <div class="container">
         <div class="cocktail-list flex flex-wrap gap-2  justify-center"></div>
-        <div class="pagination flex justify-center gap-2 mt-20"></div>
-        <script type="module" src="main.js"></script>
+        <div class="pagination flex justify-center gap-2 items-end h-[50%] pt-10"></div>
     </div>
+
+    <script type="module" src="main.js"></script>
+
 </body>
 
 </html>
