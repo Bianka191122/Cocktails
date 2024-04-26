@@ -114,13 +114,24 @@ function showCocktails(){
     cocktailsToShow.forEach((obj, i)=>{
         document.querySelector('.cocktail-list').innerHTML += `
         <div class="myCard">
-        <img class="images rounded-3xl" src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}
-        <!-- Modal toggle -->
-<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-  Toggle modal
-</button>
-
+            <img class="images rounded-3xl" src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}
+            <!-- Modal toggle -->
+            <div class="flex justify-center items-center">
+                <button id="btnModal" data-cocktailName=${obj.name} data-modal-target="default-modal" data-modal-toggle="default-modal" class=" uppercase text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                Details
+                </button>
+            </div>
         </div>`
+    })
+    document.getElementById("btnModal").addEventListener('click',(e)=>{
+        console.log(e.target.dataset.cocktailName);
+        document.getElementById("myModal").classList.remove('hidden')
+
+        document.querySelector('h3').innerHTML=obj.name
+    })
+
+    document.getElementById("closeModal").addEventListener('click',()=>{
+        document.getElementById("myModal").classList.add('hidden')
     })
     renderPagination(cocktails.length)
 }
