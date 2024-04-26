@@ -112,7 +112,15 @@ function showCocktails(){
     let endIndex = stratIndex+cocktailPerPage
     let cocktailsToShow = cocktails.slice(stratIndex,endIndex)
     cocktailsToShow.forEach((obj, i)=>{
-        document.querySelector('.cocktail-list').innerHTML += `<div class="myCard"><img src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}</div>`
+        document.querySelector('.cocktail-list').innerHTML += `
+        <div class="myCard">
+        <img class="images rounded-3xl" src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}
+        <!-- Modal toggle -->
+<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+  Toggle modal
+</button>
+
+        </div>`
     })
     renderPagination(cocktails.length)
 }
@@ -125,7 +133,7 @@ function renderPagination(totalItem){
         button.textContent = i
         button.classList.add('page-btn')
         if(i==page){
-            button.classList.add('bg-indigo-400')
+            button.classList.add('bg-black')
         }
         document.querySelector('.pagination').appendChild(button)
     }
