@@ -117,17 +117,25 @@ function showCocktails(){
             <img class="images rounded-3xl" src="https://source.unsplash.com/random/200×300/?cocktail&randomNumber=${i+1}"></img>${obj.name}
             <!-- Modal toggle -->
             <div class="flex justify-center items-center">
-                <button id="btnModal" data-cocktailName=${obj.name} data-modal-target="default-modal" data-modal-toggle="default-modal" class=" uppercase text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                <button class="btnModal" name="${obj.name}" data-modal-target="default-modal" data-modal-toggle="default-modal" class="uppercase text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                 Details
                 </button>
             </div>
         </div>`
     })
-    document.getElementById("btnModal").addEventListener('click',(e)=>{
-        console.log(e.target.dataset.cocktailName);
-        document.getElementById("myModal").classList.remove('hidden')
+    document.querySelectorAll(".btnModal").forEach(obj=>{
+        obj.addEventListener('click',()=>{
+            document.getElementById("myModal").classList.remove('hidden')
+            document.querySelector('h3').innerHTML=obj.name
+            console.log(cocktailsToShow);
+            let cocktailName = obj.name
+            let details2 = cocktailsToShow.find(obj=>obj.name==cocktailName)
+            document.querySelector(".descr").innerHTML=details2.instructions
 
-        document.querySelector('h3').innerHTML=obj.name
+            let cocktailIngredients = obj.ingredients
+            let details1 = cocktailsToShow.find(obj=>obj.ingredients==cocktailIngredients)
+            document.querySelector(".ingr").innerHTML=details1.ingredients
+        })
     })
 
     document.getElementById("closeModal").addEventListener('click',()=>{
